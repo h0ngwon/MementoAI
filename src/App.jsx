@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import data from "../data.json"
+import data from "../data.json";
 import Column from "./components/Column";
 
 const App = () => {
@@ -37,6 +37,7 @@ const App = () => {
 				alert(
 					"첫 번째 컬럼에서 세 번째 컬럼으로는 이동할 수 없습니다."
 				);
+				setSelectedItems([]);
 				return;
 			}
 
@@ -61,6 +62,7 @@ const App = () => {
 				alert(
 					"짝수 아이템은 다른 짝수 아이템 앞으로 이동할 수 없습니다."
 				);
+				setSelectedItems([]);
 				return;
 			}
 
@@ -70,7 +72,8 @@ const App = () => {
 				  )
 				: [sourceItem];
 
-			if (source.droppableId !== destination.droppableId) { // 다른 컬럼으로 이동
+			if (source.droppableId !== destination.droppableId) {
+				// 다른 컬럼으로 이동
 				itemsToMove.forEach((item) => {
 					const index = sourceItems.findIndex(
 						(i) => i.id === item.id
@@ -92,7 +95,9 @@ const App = () => {
 				};
 
 				setColumns(newColumns);
-			} else { // 같은 컬럼 내 이동
+				setSelectedItems([]);
+			} else {
+				// 같은 컬럼 내 이동
 				itemsToMove.forEach((item) => {
 					const index = sourceItems.findIndex(
 						(i) => i.id === item.id
@@ -109,6 +114,7 @@ const App = () => {
 				};
 
 				setColumns(newColumns);
+				setSelectedItems([]);
 			}
 		},
 		[columns, selectedItems, isEven]

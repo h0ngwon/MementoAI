@@ -19,14 +19,14 @@ const Item = ({
 					ref={provided.innerRef}
 					{...provided.draggableProps}
 					{...provided.dragHandleProps}
-					className={`select-none p-4 mb-2 min-h-[50px] text-white ${
+					className={`select-none p-6 mb-2 min-h-[50px] text-gray-700 rounded-3xl shadow-lg ${
 						restrictedItemId === item.id
 							? "bg-red-500"
 							: snapshot.isDragging
-							? "bg-[#263B4A]"
+							? "bg-gray-100"
 							: selectedItems.includes(item.id)
-							? "bg-green-500"
-							: "bg-[#456C86]"
+							? "bg-blue-300"
+							: "bg-white"
 					}`}
 					style={provided.draggableProps.style}
 					onClick={() => onSelectItem(item.id)}

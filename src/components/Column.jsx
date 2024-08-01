@@ -2,17 +2,23 @@ import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import Item from "./Item";
 
-const Column = ({ columnId, column, restrictedItemId, selectedItems, onSelectItem }) => {
+const Column = ({
+	columnId,
+	column,
+	restrictedItemId,
+	selectedItems,
+	onSelectItem,
+}) => {
 	return (
-		<div className="flex flex-col items-center mt-10">
+		<div className="flex flex-col items-center mt-10 shadow-md rounded-2xl">
 			<Droppable droppableId={columnId} key={columnId}>
 				{(provided, snapshot) => (
 					<div
 						{...provided.droppableProps}
 						ref={provided.innerRef}
-						className={`p-1 w-64 min-h-[500px] ${
+						className={`p-3 w-64 min-h-[500px] rounded-2xl gap-3 ${
 							snapshot.isDraggingOver
-								? "bg-blue-400"
+								? "bg-blue-300"
 								: "bg-gray-300"
 						}`}
 					>
